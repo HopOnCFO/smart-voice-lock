@@ -42,3 +42,42 @@ This project began as a proof-of-concept to explore how voice recognition could 
 ## Installation
 
 ### Wiring Schematic (SCHEMATIC.md)
+
+1. **Servo Motor**: Connect to pin 9 (signal), 5V (VCC), and GND.
+2. **HC-05 Bluetooth**: Wire TX to Arduino RX (pin 0), RX to Arduino TX (pin 1), VCC to 5V, GND to GND.
+3. **Power**: Use a 9V battery or USB to power the Arduino.
+
+### Steps
+1. **Assemble the Circuit**: Follow the schematic above.
+2. **Upload the Code**: Open `smart_voice_lock.ino` in Arduino IDE and upload it to your Arduino Uno.
+3. **Pair Bluetooth**: On your device, pair with HC-05 (default password: 1234 or 0000).
+4. **Test**: Use a serial terminal app to send "unlock" or "open". The servo should rotate to 90° for 5 seconds, then return to 0°.
+5. **Debug**: Open the Serial Monitor (9600 baud) to see command logs and status.
+
+### Troubleshooting
+- **Servo doesn’t move**: Check power supply (5V minimum) and wiring to pin 9.
+- **Bluetooth not connecting**: Ensure HC-05 is in pairing mode (blinking LED) and the correct COM port is used.
+- **Unrecognized commands**: Verify exact spelling (case-sensitive) and trailing newline (`\n`).
+
+## Code Explanation
+
+The main code (`smart_voice_lock.ino`) listens for Bluetooth commands and controls the servo:
+- `"unlock"` or `"open"`: Moves servo to 90° (unlocked) for 5 seconds, then back to 0° (locked).
+- `"status"`: Reports current lock state.
+- Logs all actions to Serial for debugging.
+
+## Roadmap
+- Add onboard voice recognition with a microphone module (e.g., KY-038).
+- Implement multi-user support with unique voice profiles.
+- Optimize power with deeper sleep modes and wake-on-command.
+- Add a physical override button for emergencies.
+
+## Contributing
+We welcome contributions! Fork this repo, make changes, and submit a pull request. Check issues for open tasks or suggest new features.
+
+## License
+MIT License - see [LICENSE](LICENSE) for details.
+
+## Links
+- [HopOnCFO Main Repo](https://github.com/HopOnCFO/arduino-projects)
+- [Report an Issue](https://github.com/HopOnCFO/arduino-projects/issues)
